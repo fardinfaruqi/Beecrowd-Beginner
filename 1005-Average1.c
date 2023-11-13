@@ -1,5 +1,4 @@
 // Beecrowd Problem 1005
-
 #include <stdio.h>
 int main()
 {
