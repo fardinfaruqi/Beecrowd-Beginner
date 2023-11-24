@@ -1,66 +1,25 @@
-// problem - 1021
-/**
- * Couldn't solve it in C.
- */
+// problem - 1021_Banknotes_and_Coins
 
 #include <stdio.h>
 int main()
 {
-    float n;
-    scanf("%f", &n);
-    printf("NOTAS:\n%d nota(s) de R$ 100.00\n", (int)n / 100);
-    n -= (int)n / 100 * 100;
-    printf("%d nota(s) de R$ 50.00\n", (int)n / 50);
-    n -= (int)n / 50 * 50;
-    printf("%d nota(s) de R$ 20.00\n", (int)n / 20);
-    n -= (int)n / 20 * 20;
-    printf("%d nota(s) de R$ 10.00\n", (int)n / 10);
-    n -= (int)n / 10 * 10;
-    printf("%d nota(s) de R$ 5.00\n", (int)n / 5);
-    n -= (int)n / 5 * 5;
-    printf("%d nota(s) de R$ 2.00\n", (int)n / 2);
-    n -= (int)n / 2 * 2;
-    printf("MOEDAS:\n%d moeda(s) de R$ 1.00\n", (int)n / 1);
-    n -= (int)n / 1 * 1;
-    if (n >= .50)
+    double n;
+    int note[] = {100, 50, 20, 10, 5, 2}, coin[] = {100, 50, 25, 10, 5, 1};
+    scanf("%lf", &n);
+    printf("NOTAS:\n");
+    for (int i = 0; i < 6; i++)
     {
-        printf("1 moeda(s) de R$ 0.50\n");
-        n -= .50;
+        int c = n / note[i];
+        printf("%d nota(s) de R$ %.2f\n", c, (float)note[i]);
+        n -= c * note[i];
     }
-    else
+    n *= 100;
+    printf("MOEDAS:\n");
+    for (int i = 0; i < 6; i++)
     {
-        printf("0 moeda(s) de R$ 0.50\n");
+        int c = n/coin[i];
+        printf("%d moeda(s) de R$ %.2f\n", c, (float)coin[i]/100);
+        n -= c * coin[i];
     }
-    if (n >= .25)
-    {
-        printf("1 moeda(s) de R$ 0.25\n");
-        n -= 0.25;
-    }
-    else
-    {
-        printf("0 moeda(s) de R$ 0.25\n");
-    }
-    if (n >= .10)
-    {
-        printf("%.f moeda(s) de R$ 0.10\n", n / .10);
-        if (n >= 0.20)
-            n -= 0.20;
-        else
-            n -= (n / 0.10) * 0.10;
-    }
-    else
-    {
-        printf("0 moeda(s) de R$ 0.10\n");
-    }
-    if (n >= .05)
-    {
-        printf("%.f moeda(s) de R$ 0.05\n", n / .05);
-        n -= 0.05;
-    }
-    else
-    {
-        printf("0 moeda(s) de R$ 0.05\n");
-    }
-    printf("%.f moeda(s) de R$ 0.01\n", n / .01);
     return 0;
 }
